@@ -34,4 +34,13 @@ public class MainController {
         return "ok";
     }
 
+    @GetMapping("/third")
+    public String thirdBatch(@RequestParam String value) throws Exception {
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addString("data", value)
+                .toJobParameters();
+        jobLauncher.run(jobRegistry.getJob("thirdJob"), jobParameters);
+        return "ok";
+    }
+
 }
